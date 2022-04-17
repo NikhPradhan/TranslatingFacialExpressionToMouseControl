@@ -1,9 +1,8 @@
 
 # Mouse control with facial expression
 
-This application detects your specific facial expressions and use it
-to control mouse actions.
-This application is developed by keeping in mind differently abled person.
+This application use your facial expressions to control mouse actions.
+This application is developed by keeping in mind differently abled person 
 who cannot use their hand to control their PC.
 
 
@@ -19,13 +18,13 @@ There are three Modes:
     
 2) Mouse Scrolling Mode:
      * ![Demo](https://user-images.githubusercontent.com/88503029/163718361-6cc40dc4-c1cd-4a88-ab9c-4f628e0b6d5d.png)
-     * To enter and exit this mode:
-     * Blink thrice within 1 second.
-     
      This mode simulates the mouse scroll wheel.
      there are two options:
      * Mouth open to scroll down.
      * eye brow raise to scroll up.
+     * To enter and exit this mode:
+     * Blink thrice within 1 second.
+     
 3) Mouse hover and click mode
      * ![Demo](https://user-images.githubusercontent.com/88503029/163718365-215a4a71-f387-4ee0-b78f-8f5d75371e89.png)
 
