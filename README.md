@@ -11,7 +11,7 @@ who cannot use their hand to control their PC.
 
 There are three Modes:
 1) Normal Mode:
-    * https://user-images.githubusercontent.com/88503029/163718363-fc217fe8-3df3-49e8-a28c-1b05751a3c5f.png
+    * ![Demo](https://user-images.githubusercontent.com/88503029/163718363-fc217fe8-3df3-49e8-a28c-1b05751a3c5f.png)
     * This mode is to go to other two modes.
     * No mouse movement occurs here.
 2) Mouse Scrolling Mode:
