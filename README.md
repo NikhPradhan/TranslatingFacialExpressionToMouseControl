@@ -18,8 +18,8 @@ There are three Modes:
     
 2) Mouse Scrolling Mode:
      * ![Demo](https://user-images.githubusercontent.com/88503029/163718361-6cc40dc4-c1cd-4a88-ab9c-4f628e0b6d5d.png)
-     This mode simulates the mouse scroll wheel.
-     there are two options:
+     * This mode simulates the mouse scroll wheel.
+     * There are two options:
      * Mouth open to scroll down.
      * eye brow raise to scroll up.
      * To enter and exit this mode:
