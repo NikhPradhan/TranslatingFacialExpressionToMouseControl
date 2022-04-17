@@ -17,7 +17,7 @@ Three Modes:
 2) Mouse Scrolling Mode
 3) Mouse hover and click mode
 
-![Demo](https://user-images.githubusercontent.com/88503029/163715507-622473ee-8dc5-4786-9cf7-3eb8e54a3137.gif)
+![Demo](https://user-images.githubusercontent.com/88503029/163715837-587b883a-8b3d-469b-99ac-ce3879434bef.gif)
 
 1) Normal Mode:
 
