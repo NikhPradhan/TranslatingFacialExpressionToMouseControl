@@ -17,7 +17,7 @@ Three Modes:
 2) Mouse Scrolling Mode
 3) Mouse hover and click mode
 
-![Demo](https://github.com/NikhPradhan/TranslatingFacialExpressionToMouseControl/blob/main/Demo1.mp4)
+![Demo](https://github.com/NikhPradhan/TranslatingFacialExpressionToMouseControl/issues/1#issue-1206356539)
 1) Normal Mode:
 https://drive.google.com/file/d/1cwwmxFApJrQGF_xgO3QoPmk7IB4Wy3pq/view?usp=sharing
 
