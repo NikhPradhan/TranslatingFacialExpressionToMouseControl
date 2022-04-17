@@ -23,7 +23,9 @@ There are three Modes:
      * eye brow raise to scroll up.
 3) Mouse hover and click mode
 
-https://user-images.githubusercontent.com/88503029/163717355-aa1a8ca2-b8b5-4c62-bbda-649b982ffa60.mp4
+https://user-images.githubusercontent.com/88503029/163718041-b48636ec-0857-4acc-89b7-c5e9a52cf22d.mp4
+
+https://user-images.githubusercontent.com/88503029/163718083-30e25b8f-727e-4294-99a2-0c95543086c6.mp4
 
 1) Normal Mode:
 
