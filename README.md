@@ -53,7 +53,7 @@ Packages required:
     3) numpy
     4) pyautogui
     5) python 3.7 
-Install my-project with npm
+
 
 
     
