@@ -4,8 +4,9 @@ This application use your facial expressions to control mouse actions.
 This application is developed specially for differently abled person 
 who cannot use their hand to control their PC.
 
-
-
+This application is divided mainly in two parts:
+   * To scroll up and down the window.
+   * To hover the mouse cursor around the screen and click.
 
 
 
