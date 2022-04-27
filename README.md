@@ -26,8 +26,7 @@ who cannot use their hand to control their PC.
      * There are two options:
          * Open to scroll down.
          * Raise eye brow to scroll up.
-     * To enter and exit this mode:
-     * Blink thrice within 1 second.
+     * To enter and exit this mode blink thrice within 1 second.
      
 3) #### Mouse hover and click mode:
     ![Demo](https://user-images.githubusercontent.com/88503029/163718365-215a4a71-f387-4ee0-b78f-8f5d75371e89.png)
