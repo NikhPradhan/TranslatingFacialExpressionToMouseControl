@@ -1,7 +1,7 @@
 # Mouse control with facial expression
 
 This application use your facial expressions to control mouse actions.
-This application is developed specifically for differently abled person 
+This application is developed specially for differently abled person 
 who cannot use their hand to control their PC.
 
 
