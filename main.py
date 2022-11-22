@@ -58,12 +58,13 @@ def mainFunction():
     global SCROLLING_ACTIVE
     global MOUTH_ACTIVE
     objEyeOperation = MouthEyeOperation.EyeOperation.getInstance()
-    objMouthOperation = MouthEyeOperation.MouthOperation(frame, landmarks)
+    objMouthOperation = MouthEyeOperation.MouthOperation.getInstance()
+    #objMouthOperation = MouthEyeOperation.MouthOperation(frame, landmarks)
 
     if(MOUTH_ACTIVE[2]==False and SCROLLING_ACTIVE[4]==False):
         """ This is a normal Mode Where both CursorMove Mode and scrolling is deactive """
 
-        if objMouthOperation.getMouthRatio()<0.6:
+        if objMouthOperation.getMouthRatio(frame,landmarks)<0.6:
             draw_text(frame, f'blink count: {objEyeOperation.BLINK_COUNT} ', pos=(400, 50), font_scale=1, text_color=(0, 0, 255),font_thickness=1)
         draw_text(frame, f' Normal mode: ', pos=(160, 30), font_scale=1, text_color=(255, 255, 255),
                   font_thickness=1)
@@ -71,7 +72,7 @@ def mainFunction():
         draw_text(frame, f'1. Blink Thrice: Scrolling Mode', pos=(20, 60), font_scale=1,text_color=(255, 255, 255), font_thickness=1)
         draw_text(frame, f'2. Open Mouth(3Secs) : CursorMove Mode', pos=(20, 80), font_scale=1, text_color=(255, 255, 255),font_thickness=1)
         objEyeOperation.drawEye(frame,landmarks)
-        objMouthOperation.drawMouth()
+        objMouthOperation.drawMouth(frame,landmarks)
     if(objEyeOperation.isBlink(2,frame,landmarks) and MOUTH_ACTIVE[2]==False):
             """If blink is done then it updates the value in scrolling_active array accordingly"""
             """Here this block is executed only if mouse move mode is deactivated i.e MOUTH_ACTIVE[2] is Fasle """
@@ -118,7 +119,7 @@ def mainFunction():
     """for activating mouse move mouth has to be opened constantly for atleast 2 secs
     so detecting the mouth open """
     if SCROLLING_ACTIVE[4] == False:
-        if objMouthOperation.getMouthRatio() > .60 :
+        if objMouthOperation.getMouthRatio(frame,landmarks) > .60 :
             """Mouth open"""
 
             draw_text(frame, f'Mouth Open : {MOUTH_ACTIVE[1] - MOUTH_ACTIVE[0]} secs', pos=(380,50), font_scale=1,
@@ -158,7 +159,8 @@ def activateScrolling():
     """
     global frame
     global landmarks
-
+    objEyeOperation = MouthEyeOperation.EyeOperation.getInstance()
+    objMouthOperation = MouthEyeOperation.MouthOperation.getInstance()
     #cv2.putText(frame, f'blink count: {BLINK_COUNT} ', (400, 50), cv2.FONT_ITALIC, 1, (0, 0, 255), 2)
     draw_text(frame, f'blink count: {BLINK_COUNT} ', pos=(400, 50), font_scale=1,
               text_color=(0, 0, 255), font_thickness=1)
@@ -177,22 +179,23 @@ def activateScrolling():
     #cv2.putText(frame, f'3. Blink Thrice: Normal Mode', (20, 100), cv2.FONT_ITALIC, .6, (0, 255, 255), 2)
     draw_text(frame, f'3. Blink Thrice: Normal Mode', pos=(20, 100), font_scale=1,
               text_color=(0, 255, 255), font_thickness=1)
-    drawEye()
-    drawMouth()
-    drawEyeBrow()
+    objEyeOperation.drawEye(frame,landmarks)
+    objMouthOperation.drawMouth()
+    objEyeOperation.drawEyeBrow(frame,landmarks)
+
 
 
     #cv2.putText(frame,f'ratioEye: {str(distRatioE)} ratioM {str(distRatioM)}' ,(200,100),cv2.FONT_ITALIC,1,(0,0,255),1)
-    if getEyeBrowRatio() > .92:
+    if objEyeOperation.getEyeBrowRatio(frame,landmarks) > .92:
         """ Scroll up"""
-        cv2.line(frame, getLmark(153,frame,landmarks), getLmark(65,frame,landmarks), (0, 0, 255), 1)
-        cv2.line(frame, getLmark(133,frame,landmarks), getLmark(33,frame,landmarks), (0, 0, 255), 1)
+        cv2.line(frame, getLmark(153), getLmark(65), (0, 0, 255), 1)
+        cv2.line(frame, getLmark(133), getLmark(33), (0, 0, 255), 1)
         pyautogui.scroll(20)
-    elif getMouthRatio() > .60:
+    elif objMouthOperation.getMouthRatio() > .60:
 
         """Scroll down"""
         pyautogui.scroll(-20)
-        cv2.line(frame,getLmark(17,frame,landmarks),getLmark(0,frame,landmarks),(0,0,255),1)
+        cv2.line(frame,getLmark(17),getLmark(0),(0,0,255),1)
 
     #cv2.circle(frame,landmarks[291],1,(0,255,0),1)
     #cv2.circle(frame,landmarks[61],1,(0,255,0),1)
@@ -205,7 +208,8 @@ def activateScrolling():
 
 def activateCursor():
     """Mouse Cursor control """
-
+    objEyeOperation = MouthEyeOperation.EyeOperation.getInstance()
+    objMouthOperation = MouthEyeOperation.MouthOperation.getInstance()
     draw_text(frame, " Cursor Control mode: ", pos=(160, 30), font_scale=1,text_color=(0, 0, 255), font_thickness=1)
     draw_text(frame, f' Move nose within pink box ', pos=(220, 300), font_scale=1,text_color=(255, 0, 255), font_thickness=1)
     draw_text(frame, f'1. Left click : Left eye blink', pos=(20, 60), font_scale=1,text_color=(0, 255, 0), font_thickness=1)
@@ -214,12 +218,12 @@ def activateCursor():
     ####################################
     global pLocX,pLocY,cLocY,cLocX
     smoothValue = 10
-    nosex, nosey = getLmark(4,frame,landmarks)
+    nosex, nosey = getLmark(4)
     global MOUTH_OPENED
     ############################
 
-    drawEye()
-    drawMouth()
+    objEyeOperation.drawEye(frame,landmarks)
+    objMouthOperation.drawMouth(frame,landmarks)
     cv2.circle(frame,(nosex,nosey),2,(0,0,255),1)
 
     ###################################################################################
@@ -241,7 +245,7 @@ def activateCursor():
 
     pLocX , pLocY = cLocX , cLocY
 
-    if (isBlink(0)):
+    if (objEyeOperation.isBlink(0,frame,landmarks)):
         """both eye blink to left click"""
         autopy.mouse.click()
 

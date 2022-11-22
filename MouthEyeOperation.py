@@ -17,9 +17,9 @@ class EyeOperation:
         if EyeOperation.__shared_instance != None:
             raise Exception("Singleton class")
         else:
-            self.BLINK_COUNT =0
-            self.EYES_CLOSED=1
-            self.EYES_OPENED=0
+            self.BLINK_COUNT = 0
+            self.EYES_CLOSED = 1
+            self.EYES_OPENED = 0
             EyeOperation.__shared_instance = self
 
     def drawEye(self,frame,landmarks):
@@ -29,9 +29,9 @@ class EyeOperation:
         [cv2.circle(frame, x, 1, (255, 255, 0), 2) for x in rightEye]
 
 
-    def drawEyeBrow(self,frame):
-        leftBrow = [objLandmark.getLmark(x) for x in Face_Indices.LEFT_EYEBROW]
-        rightBrow = [objLandmark.getLmark(x) for x in Face_Indices.RIGHT_EYEBROW]
+    def drawEyeBrow(self,frame,landmarks):
+        leftBrow = [objLandmark.getLmark(x,frame,landmarks) for x in Face_Indices.LEFT_EYEBROW]
+        rightBrow = [objLandmark.getLmark(x,frame,landmarks) for x in Face_Indices.RIGHT_EYEBROW]
         [cv2.circle(frame, x, 1, (255, 255, 0), 2) for x in leftBrow]
         [cv2.circle(frame, x, 1, (255, 255, 0), 2) for x in rightBrow]
 
@@ -96,20 +96,33 @@ class EyeOperation:
                 return False
 
 class MouthOperation:
-    def __init__(self,frame,landmarks):
-        self.frame=frame
-        self.landmarks=landmarks
+
+    __shared_instance = None
+    @staticmethod
+    def getInstance():
+        """Static Access Method"""
+        if MouthOperation.__shared_instance == None:
+            MouthOperation()
+        return MouthOperation.__shared_instance
+
+    def __init__(self):
+        if MouthOperation.__shared_instance != None:
+            raise Exception("Singleton class")
+        else:
+            MouthOperation.__shared_instance = self
 
 
-    def drawMouth(self):
-        upperLip = [objLandmark.getLmark(x,self.frame, self.landmarks) for x in Face_Indices.UPPER_LIPS]
-        lowerLip = [objLandmark.getLmark(x,self.frame, self.landmarks) for x in Face_Indices.LOWER_LIPS]
-        [cv2.circle(self.frame, x, 1, (255, 255, 0), 2) for x in upperLip]
-        [cv2.circle(self.frame, x, 1, (255, 255, 0), 2) for x in lowerLip]
 
-    def getMouthRatio(self):
-        distVM = objEucledianDistance.getEuclDist(objLandmark.getLmark(17, self.frame, self.landmarks), objLandmark.getLmark(0, self.frame, self.landmarks))
-        distHM = objEucledianDistance.getEuclDist(objLandmark.getLmark(61, self.frame, self.landmarks), objLandmark.getLmark(291, self.frame, self.landmarks))
+
+    def drawMouth(self,frame,landmarks):
+        upperLip = [objLandmark.getLmark(x,frame, landmarks) for x in Face_Indices.UPPER_LIPS]
+        lowerLip = [objLandmark.getLmark(x,frame, landmarks) for x in Face_Indices.LOWER_LIPS]
+        [cv2.circle(frame, x, 1, (255, 255, 0), 2) for x in upperLip]
+        [cv2.circle(frame, x, 1, (255, 255, 0), 2) for x in lowerLip]
+
+    def getMouthRatio(self,frame,landmarks):
+        distVM = objEucledianDistance.getEuclDist(objLandmark.getLmark(17, frame, landmarks), objLandmark.getLmark(0, frame, landmarks))
+        distHM = objEucledianDistance.getEuclDist(objLandmark.getLmark(61, frame, landmarks), objLandmark.getLmark(291, frame, landmarks))
 
         distRatioM = round(distVM / distHM, 2)
         return distRatioM
